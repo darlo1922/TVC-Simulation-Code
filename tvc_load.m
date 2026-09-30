@@ -1,13 +1,12 @@
-function [T_tot] = tvc_load (Fparams)
+function [T_tot] = tvc_load (params,Fparams)
 
 % varying parameters
 D_cm = Fparams.D_cm; % (in) distance from the CM of the engine to O
-freq = Fparams.freq; % (Hz) frequency
 mu_cg = Fparams.mu_cg; % friction coefficient for central gimbal bearing
 r_bear = Fparams.r_bear; % (in) radius of the bearing contact in central gimbal
 
 % static parameters
-F_thrust = 1250; % (lbf) maximum force of thrust 
+F_thrust = 1600; % (lbf) maximum force of thrust 
 r_off = 0.250; % (in) worst case scenario radius offset
 m_e = 0.1036; %((lbf*s^2)/(in)) mass of the engine assembly below A for W_engine = 40 lbm
 R_i = 2.89; % (in) ID of engine
@@ -15,6 +14,10 @@ R_o = 3.00; % (in) OD of engine
 L_e = 18.00; % (in) length of the engine
 theta_max = 15; % maximum gimbal angle
 k_hose = 1; % ((ft*lbf)/(deg)) rotational stiffness of hoses
+
+% Frequency
+[~,~,Freq_MAX] = tvc_speed (params);
+freq = Freq_MAX;
 
 % Torque from offset thrust
 T_off_in = r_off .* F_thrust; % (in*lbf)

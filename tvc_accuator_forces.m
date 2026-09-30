@@ -4,7 +4,7 @@ theta_max = deg2rad(15);
 theta_x_vec = linspace(-theta_max, theta_max, 31);
 theta_y_vec = linspace(-theta_max, theta_max, 31);
 
-[T_tot_ft] = tvc_load (Fparams); % (ft*lbf)
+[T_tot_ft] = tvc_load (params,Fparams); % (ft*lbf)
 T_tot_in = T_tot_ft.*12; % (in*lbf)
 
 
