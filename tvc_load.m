@@ -8,7 +8,7 @@ r_bear = Fparams.r_bear; % (in) radius of the bearing contact in central gimbal
 % static parameters
 F_thrust = 1600; % (lbf) maximum force of thrust 
 r_off = 0.250; % (in) worst case scenario radius offset
-m_e = 0.1036; %((lbf*s^2)/(in)) mass of the engine assembly below A for W_engine = 40 lbm
+m_e = 0.1036; %((lbf*s^2)/(in)) mass of the engine assembly below A for W_engine = 40 lbf
 R_i = 2.89; % (in) ID of engine
 R_o = 3.00; % (in) OD of engine
 L_e = 18.00; % (in) length of the engine
