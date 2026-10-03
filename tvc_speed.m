@@ -1,6 +1,6 @@
 function [theta_dot_X_deg,theta_dot_Y_deg,freq_MAX,theta_MIN] = tvc_speed (params)
 
-Vfeed = params.Vfeed;
+Vfeed = params.Vfeed; 
 theta_max = deg2rad(15);
 
 theta_x_vec = linspace(-theta_max, theta_max, 31);
@@ -36,3 +36,4 @@ freq_X = theta_dot_X/(2*pi*theta_max);
 freq_Y = theta_dot_Y/(2*pi*theta_max);
 
 freq_MAX = max([freq_Y,freq_X]);
+
