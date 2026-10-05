@@ -1,1 +1,1 @@
-You need MATLAB optimization toolbox to run use the backlash functionaliity in runner4
+You need MATLAB optimization toolbox to use the backlash function
