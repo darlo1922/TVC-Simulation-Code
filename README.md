@@ -1,1 +1,1 @@
-You need MATLAB optimization toolbox to use the backlash function
+You need MATLAB optimization toolbox to use the kinematics function
