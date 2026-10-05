@@ -1,4 +1,4 @@
-function [L1, L2,] = tvc_inverse_kinematics(theta_x, theta_y, params)
+function [L1, L2] = tvc_inverse_kinematics(theta_x, theta_y, params)
 
 R_A = params.R_A; % (in) Upper Mount Radius 
 Z_A = params.Z_A; % (in) Upper Mount Height
