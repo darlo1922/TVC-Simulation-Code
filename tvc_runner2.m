@@ -11,11 +11,22 @@ Fparams.D_cm = 9; % (in) Distance between O and the engines CM
 Fparams.mu_cg = 0.2; % friction in the central bearing joint
 Fparams.r_bear = 1; % (in) radius of the central bearing joint
 
+backlash = 0.002; % (in)
+stiffness = 20000; % (lbf/in)
+theta_x_des = deg2rad(15);
+theta_y_des = deg2rad(15);
+
 F_MAX_matrix = zeros(length(Z_A_vec),length(Z_B_vec)); % Maximum Force Matrix for each combination of Z_A and Z_B
 stroke_matrix = zeros(length(Z_A_vec),length(Z_B_vec)); % Maximum Stroke Matrix for each combination of Z_A and Z_B
 theta_MIN_matrix = zeros(length(Z_A_vec),length(Z_B_vec)); % Minimum Slew Rate Matrix for each combination of Z_A and Z_B
 L_MAX_matrix = zeros(length(Z_A_vec),length(Z_B_vec)); % Max Actuator Length Matrix for each combination of R_A and R_B
 L_MIN_matrix = zeros(length(Z_A_vec),length(Z_B_vec)); % Min Actuator Length Matrix for each combination of R_A and R_B
+backlash_theta_x_matrix = zeros(length(R_A_vec),length(R_B_vec));
+backlash_theta_y_matrix = zeros(length(R_A_vec),length(R_B_vec));
+stiffness_theta_x_matrix = zeros(length(R_A_vec),length(R_B_vec));
+stiffness_theta_y_matrix = zeros(length(R_A_vec),length(R_B_vec));
+total_error_theta_x_matrix = zeros(length(R_A_vec),length(R_B_vec));
+total_error_theta_y_matrix = zeros(length(R_A_vec),length(R_B_vec));
 
 for i = 1:length(Z_A_vec)
 
@@ -28,6 +39,7 @@ for i = 1:length(Z_A_vec)
         [~,~,stroke,~,~] = tvc_stroke (params); % get max stroke for each combination
         [~,~,~,theta_MIN] = tvc_speed (params); % get min slew rate for each combination
         [~,~,~,L_MAX,L_MIN] = tvc_stroke (params); % get max and min actuator length for each combination
+
 
         F_MAX_matrix(i,j) = F_MAX; % store each max force value inside of its combination location in the matrix
         stroke_matrix(i,j) = stroke; % store each max stroke value inside of its combination location in the matrix
