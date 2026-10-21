@@ -15,6 +15,11 @@ B_0_2 = [0; R_B; Z_B]; % (in) Second Lower Mount Position Vector when theta_x an
 R = [cos(theta_y), sin(theta_x).*sin(theta_y), cos(theta_x).*sin(theta_y);
     0, cos(theta_x), -sin(theta_x);
     -sin(theta_y), sin(theta_x).*cos(theta_y), cos(theta_x).*cos(theta_y)];
+%R = [cos(theta_y), 0, sin(theta_y);
+ %   sin(theta_x)*sin(theta_y), cos(theta_x), ...
+  %  -sin(theta_x)*cos(theta_y);
+   % -cos(theta_x)*sin(theta_y), sin(theta_x), ...
+    %cos(theta_x)*cos(theta_y)];
 
 B_1 = R * B_0_1; % First Lower Position Vector when theta_x and theta_y /= 0
 B_2 = R * B_0_2; % Second Lower Position Vector when theta_x and theta_y /= 0

@@ -7,6 +7,7 @@ theta_y_vec = linspace(-theta_max, theta_max, 31); % create a vector for varying
 [T_tot] = tvc_load (params,Fparams); % (ft*lbf) get maximum torque
 
 %% All of the torque along the Y axis
+SF = 1.5;
 
 T_req = [0; T_tot]; % (in*lbf)
 

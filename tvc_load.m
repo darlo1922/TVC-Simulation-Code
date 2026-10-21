@@ -3,10 +3,13 @@ function [T_tot] = tvc_load (params,Fparams)
 D_cm = Fparams.D_cm; % (in) distance from the CM of the engine to O
 mu_cg = Fparams.mu_cg; % friction coefficient for central gimbal bearing
 r_bear = Fparams.r_bear; % (in) radius of the bearing contact in central gimbal
+F_thrust = Fparams.F_thrust; % (lbf) maximum force of thrust 
+a_ax = Fparams.a_ax.*12; % (in/s^2) axial force loading (T/W initially)
+a_lat = Fparams.a_lat.*12; % (in/s^2) lateral force loading
 
-F_thrust = 1600; % (lbf) maximum force of thrust 
 r_off = 0.250; % (in) worst case scenario radius offset
 m_e = 0.1036; %((lbf*s^2)/(in)) mass of the engine assembly below A for W_engine = 40 lbf
+w_e = 40; % (lbf)
 R_i = 2.89; % (in) ID of engine
 R_o = 3.00; % (in) OD of engine
 L_e = 18.00; % (in) length of the engine
@@ -33,8 +36,19 @@ T_friction = mu_cg.*F_thrust.*r_bear; % (in*lbf)
 % Torque from hose stiffness
 T_hose = k_hose.*theta_max; % (in*lbf)
 
+% Torque from gravity
+T_grav = w_e.*D_cm.*sind(theta_max); % (in*lbf)
+
+% Axial Torque
+T_axial = m_e.*a_ax.*sind(theta_max).*D_cm;
+
+% Lateral Torque
+T_lateral = m_e.*a_lat.*D_cm;
+
 % Total Torque on actuator:
-T_tot = T_off + T_inertia + T_friction + T_hose; % (in*lbf)
+T_tot = T_off + T_inertia + T_friction + T_hose + T_grav + T_axial + T_lateral; % (in*lbf)
+
+
 
 
 

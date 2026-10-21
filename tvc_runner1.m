@@ -13,23 +13,16 @@ params.Vfeed = 2.6; % (in/s) Fixed Feed Speed
 Fparams.D_cm = 9; % (in) Distance between O and the engines CM
 Fparams.mu_cg = 0.2; % friction in the central bearing joint
 Fparams.r_bear = 1; % (in) radius of the central bearing joint
-
-backlash = 0.002; % (in)
-stiffness = 20000; % (lbf/in)
-theta_x_des = deg2rad(15);
-theta_y_des = deg2rad(15);
+Fparams.F_thrust = 1600; % (lbf) thrust force
+Fparams.W_vehicle = 1000; % (lbf) estimated vehicle weight
+Fparams.a_ax = Fparams.F_thrust/Fparams.W_vehicle; % (ft/s^2) axial force loading (T/W initially)
+Fparams.a_lat = 0.2; % (ft/s^2) estimated lateral force loading (disturbances)
 
 F_MAX_matrix = zeros(length(R_A_vec),length(R_B_vec)); % Maximum Force Matrix for each combination of R_A and R_B
 stroke_matrix = zeros(length(R_A_vec),length(R_B_vec)); % Maximum Stroke Matrix for each combination of R_A and R_B
 theta_MIN_matrix = zeros(length(R_A_vec),length(R_B_vec)); % Minimum Slew Rate Matrix for each combination of R_A and R_B
 L_MAX_matrix = zeros(length(R_A_vec),length(R_B_vec)); % Max Actuator Length Matrix for each combination of R_A and R_B
 L_MIN_matrix = zeros(length(R_A_vec),length(R_B_vec)); % Min Actuator Length Matrix for each combination of R_A and R_B
-backlash_theta_x_matrix = zeros(length(R_A_vec),length(R_B_vec));
-backlash_theta_y_matrix = zeros(length(R_A_vec),length(R_B_vec));
-stiffness_theta_x_matrix = zeros(length(R_A_vec),length(R_B_vec));
-stiffness_theta_y_matrix = zeros(length(R_A_vec),length(R_B_vec));
-total_error_theta_x_matrix = zeros(length(R_A_vec),length(R_B_vec));
-total_error_theta_y_matrix = zeros(length(R_A_vec),length(R_B_vec));
 
 for i = 1:length(R_A_vec)
     
